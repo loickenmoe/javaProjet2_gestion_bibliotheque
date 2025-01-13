@@ -1,0 +1,30 @@
+Utilisation de l’application
+	Une fois l'application démarrée, un menu interactif s'affiche comme suit :
+==================== Bibliothèque ====================
+1. Ajouter un livre
+2. Afficher tous les livres
+3. Rechercher un livre par titre
+4. Modifier les informations d’un livre
+5. Supprimer un livre
+6. Inscrire un membre
+7. Afficher tout les membres
+8. Rechercher un membre par nom
+9. Modifier les informations d’un membre
+10. Supprimer un membre
+11. Enregistrer un emprunt
+12. Afficher tout les emprunts
+13. Modifier les informations d’un emprunt
+14. Retourner un livre
+15. Calculer de la pénalités d’un emprunt
+16. Quitter
+Choisissez une option :
+
+Utilisons l’application pour Ajouter un livre.
+Sélectionnez l'option 1.
+Entrez les informations demandées :
+Titre : Harry Potter
+Auteur : J.K. Rowling
+Catégorie : Fantasy
+Nombre d'exemplaires : 10
+Sortie :
+Livre ajouté avec succès !
