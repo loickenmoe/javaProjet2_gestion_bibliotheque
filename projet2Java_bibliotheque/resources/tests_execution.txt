@@ -27,4 +27,4 @@ Auteur : J.K. Rowling
 Catégorie : Fantasy
 Nombre d'exemplaires : 10
 Sortie :
-Livre ajouté avec succès !
+models.Livre ajouté avec succès !

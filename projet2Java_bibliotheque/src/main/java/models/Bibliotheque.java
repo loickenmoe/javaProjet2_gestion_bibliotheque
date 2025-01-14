@@ -1,9 +1,13 @@
+package models;
+
+import daos.*;
+
 import java.sql.*;
 import java.util.List;
 
 /**
  * Classe pour centraliser toutes les fonctionnalités de gestion de la bibliothèque.
- * Constructeur de la classe Bibliotheque.
+ * Constructeur de la classe models.Bibliotheque.
  * Initialise les DAO pour les livres, les membres, et les emprunts.
  */
 public class Bibliotheque {
@@ -17,7 +21,7 @@ public class Bibliotheque {
      */
     public void ajouterLivre(Livre livre) throws SQLException {
         livreDAO.ajouterLivre(livre);
-        System.out.println("Livre ajouté avec succès !");
+        System.out.println("models.Livre ajouté avec succès !");
     }
 
     /**
@@ -57,7 +61,7 @@ public class Bibliotheque {
      */
     public void supprimerLivre(int id) throws SQLException {
         livreDAO.supprimerLivre(id);
-        System.out.println("Livre supprimé avec succès !");
+        System.out.println("models.Livre supprimé avec succès !");
     }
 
     // --------------------------- Gestion des Membres ---------------------------
@@ -67,7 +71,7 @@ public class Bibliotheque {
      */
     public void inscrireMembre(Membre membre) throws SQLException {
         membreDAO.ajouterMembre(membre);
-        System.out.println("Membre inscrit avec succès !");
+        System.out.println("models.Membre inscrit avec succès !");
     }
 
     /**
@@ -107,7 +111,7 @@ public class Bibliotheque {
      */
     public void supprimerMembre(int id) throws SQLException {
         membreDAO.supprimerMembre(id);
-        System.out.println("Membre supprimé avec succès !");
+        System.out.println("models.Membre supprimé avec succès !");
     }
 
     // --------------------------- Gestion des Emprunts ---------------------------
@@ -117,7 +121,7 @@ public class Bibliotheque {
      */
     public void enregistrerEmprunt(Emprunt emprunt) throws SQLException {
         empruntDAO.enregistrerEmprunt(emprunt);
-        System.out.println("Emprunt enregistré avec succès !");
+        System.out.println("models.Emprunt enregistré avec succès !");
     }
 
     /**
@@ -150,7 +154,7 @@ public class Bibliotheque {
      */
     public void retournerLivre(int idEmprunt, String dateRetourEffective) throws SQLException {
         empruntDAO.retournerLivre(idEmprunt, Date.valueOf(dateRetourEffective));
-        System.out.println("Livre retourné avec succès !");
+        System.out.println("models.Livre retourné avec succès !");
     }
 
     /**

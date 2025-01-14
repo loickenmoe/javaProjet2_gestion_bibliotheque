@@ -1,3 +1,8 @@
+package daos;
+
+import models.DatabaseConnection;
+import models.Membre;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,7 +142,7 @@ public class MembreDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Membre modifié avec succès !");
+                System.out.println("models.Membre modifié avec succès !");
             } else {
                 System.out.println("Aucun membre trouvé avec cet ID.");
             }

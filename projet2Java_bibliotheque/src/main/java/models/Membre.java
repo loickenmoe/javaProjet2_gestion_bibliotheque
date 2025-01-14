@@ -1,5 +1,7 @@
+package models;
+
 /**
- * Classe représentant un Membre de la bibliothèque.
+ * Classe représentant un models.Membre de la bibliothèque.
  */
 public class Membre {
     private int id; // Identifiant unique du membre
@@ -9,7 +11,7 @@ public class Membre {
     private String adhesionDate; // Date d'adhésion au format YYYY-MM-DD
 
     /**
-     * Constructeur de la classe Membre.
+     * Constructeur de la classe models.Membre.
      *
      * @param id Identifiant unique
      * @param nom Nom du membre
@@ -39,7 +41,7 @@ public class Membre {
 
     @Override
     public String toString() {
-        return "Membre{" +
+        return "models.Membre{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +

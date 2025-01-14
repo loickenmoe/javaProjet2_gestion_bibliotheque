@@ -1,7 +1,9 @@
+package models;
+
 import java.time.LocalDate;
 
 /**
- * Classe représentant un Emprunt dans la bibliothèque.
+ * Classe représentant un models.Emprunt dans la bibliothèque.
  */
 public class Emprunt {
     private int idEmprunt; // Identifiant unique de l'emprunt
@@ -12,7 +14,7 @@ public class Emprunt {
     private LocalDate dateRetourEffective; // Date réelle de retour du livre
 
     /**
-     * Constructeur de la classe Emprunt.
+     * Constructeur de la classe models.Emprunt.
      *
      * @param idEmprunt Identifiant unique
      * @param membreId Identifiant du membre
@@ -44,7 +46,7 @@ public class Emprunt {
 
     @Override
     public String toString() {
-        return "Emprunt{" +
+        return "models.Emprunt{" +
                 "idEmprunt=" + idEmprunt +
                 ", membreId=" + membreId +
                 ", livreId=" + livreId +

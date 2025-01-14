@@ -1,3 +1,7 @@
+package daos;
+
+import models.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +142,7 @@ public class LivreDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Livre modifié avec succès !");
+                System.out.println("models.Livre modifié avec succès !");
             } else {
                 System.out.println("Aucun livre trouvé avec cet ID.");
             }

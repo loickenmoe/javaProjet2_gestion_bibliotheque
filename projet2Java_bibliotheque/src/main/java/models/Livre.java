@@ -1,5 +1,7 @@
+package models;
+
 /**
- * Classe représentant un Livre dans la bibliothèque.
+ * Classe représentant un models.Livre dans la bibliothèque.
  */
 public class Livre {
     private int id; // Identifiant unique du livre
@@ -9,7 +11,7 @@ public class Livre {
     private int nombreExemplaires; // Nombre d'exemplaires disponibles
 
     /**
-     * Constructeur de la classe Livre.
+     * Constructeur de la classe models.Livre.
      *
      * @param id Identifiant unique
      * @param titre Titre du livre
@@ -39,7 +41,7 @@ public class Livre {
 
     @Override
     public String toString() {
-        return "Livre{" +
+        return "models.Livre{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
                 ", auteur='" + auteur + '\'' +

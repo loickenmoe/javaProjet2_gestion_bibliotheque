@@ -1,3 +1,8 @@
+import models.Bibliotheque;
+import models.Emprunt;
+import models.Livre;
+import models.Membre;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -347,7 +352,7 @@ public class App {
                         // Appeler la méthode pour modifier l'emprunt
                         try {
                             bibliotheque.modifierEmprunt(idEmprunt, nouvelleDateRetourPrevue, nouvelleDateRetourEffective);
-                            System.out.println("Emprunt modifié avec succès.");
+                            System.out.println("models.Emprunt modifié avec succès.");
                         } catch (SQLException e) {
                             System.err.println("Erreur lors de la modification de l'emprunt : " + e.getMessage());
                         }

@@ -1,3 +1,8 @@
+package daos;
+
+import models.DatabaseConnection;
+import models.Emprunt;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -56,7 +61,7 @@ public class EmpruntDAO {
                                 : null
                 );
 
-                System.out.println("Emprunt{id=" + emprunt.getIdEmprunt() +
+                System.out.println("models.Emprunt{id=" + emprunt.getIdEmprunt() +
                         ", membre=" + rs.getString("membre_nom") +
                         ", livre=" + rs.getString("livre_titre") +
                         ", dateEmprunt=" + emprunt.getDateEmprunt() +
@@ -111,7 +116,7 @@ public class EmpruntDAO {
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Emprunt modifié avec succès !");
+                System.out.println("models.Emprunt modifié avec succès !");
             } else {
                 System.out.println("Aucun emprunt trouvé avec cet ID.");
             }

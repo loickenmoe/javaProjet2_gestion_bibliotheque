@@ -42,21 +42,23 @@ Le projet est structuré comme suit :
 src/
 ├── main/
 │   ├── java/
-│   │   ├── App.java            # Classe principale avec le menu interactif
-│   │   ├── Bibliotheque.java   # Classe pour centraliser toutes les fonctionnalités
-│   │   ├── DatabaseConnection.java   # Gestion de la connexion PostgreSQL
-│   │   ├── Emprunt              # Classe représentant un emprunt dans la bibliothèque
-│   │   ├── EmpruntDAO           # DAO pour gérer les emprunts dans la bibliothèque
-│   │   ├── Livre                # Classe représentant un livre dans la bibliothèque
-│   │   ├── LivreDAO             # DAO pour gérer les livres dans la bibliothèque
-│   │   ├── Membre               # Classe représentant un membre dans la bibliothèque
-│   │   ├── MembreDAO            # DAO pour gérer les membres dans la bibliothèque
-├── resources/
-│   ├── bibliothequeDB_javaProject2.sql # Base de Données de la bibliothèque
-│   ├── classes_UML.pdf         # Diagramme UML de classes
-│   ├── test_execution.txt      # Exemple d’exécution avec tests simples
-│   ├── lien_github.txt         # Lien du repository gitHub
-├── README.md                   # Instructions pour exécuter le projet
+│   │   ├── daos/
+│   │   │   ├── EmpruntDAO      #DAO pour gérer les emprunts dans la bibliothèque
+│   │   │   ├── LivreDAO        #DAO pour gérer les livres dans la bibliothèque
+│   │   │   ├── MembreDAO       #DAO pour gérer les membres dans la bibliothèque
+│   │   ├── models/             #Classe représentant un emprunt dans 
+│   │   │   ├── Bibliotheque.java  #Classe pour centraliser toutes les fonctionnalités
+│   │   │   ├── DatabaseConnection.java   #Gestion de la connexion PostgreSQL
+│   │   │   ├── Emprunt         #Classe représentant un emprunt dans la bibliothèque
+│   │   │   ├── Livre           #Classe représentant un livre dans la bibliothèque
+│   │   │   ├── Membre          #Classe représentant un membre dans la bibliothèque
+│   │   ├── App.java            #Classe principale avec le menu interactif
+├── resources/ 
+│   ├── bibliothequeDB_javaProject2.sql #Base de Données de la bibliothèque
+│   ├── classes_UML.pdf         #Diagramme UML de classes
+│   ├── test_execution.txt      #Exemple d’exécution avec tests simples
+│   ├── lien_github.txt         #Lien du repository GitHub
+├── README.md                   #Instructions pour exécuter le projet
 ├── pom.xml                     # Fichier Maven
 
 3. Création de la Base de Données
@@ -94,7 +96,7 @@ src/
 - Recharger le projet Maven pour télécharger les dépendances.
 - Configurer la Connexion à la Base de Données
 
-    Dans le fichier DatabaseConnection.java, modifiez les informations de connexion si nécessaire :
+    Dans le fichier models.DatabaseConnection.java, modifiez les informations de connexion si nécessaire :
 
     private static final String URL = "jdbc:postgresql://localhost:5432/bibliotheque";
     private static final String USER = "postgres"; // Votre utilisateur PostgreSQL
@@ -152,7 +154,7 @@ Choisissez une option :
     Nombre d'exemplaires : 10
 
 - Sortie :
-    Livre ajouté avec succès !
+    models.Livre ajouté avec succès !
 
 8. Résolution des problèmes
 
@@ -164,7 +166,7 @@ Choisissez une option :
     Assurez-vous que la base de données bibliotheque a été créée et que les tables ont été initialisées.
 
 - Problème : Access Denied ou Connexion Impossible
-    Vérifiez les informations de connexion dans DatabaseConnection.java.
+    Vérifiez les informations de connexion dans models.DatabaseConnection.java.
 
 NB: Avec ces instructions, vous pouvez exécuter le projet localement et commencer à l'utiliser.
 
