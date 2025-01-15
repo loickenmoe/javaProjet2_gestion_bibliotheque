@@ -1,7 +1,4 @@
-import models.Bibliotheque;
-import models.Emprunt;
-import models.Livre;
-import models.Membre;
+import models.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -20,20 +17,22 @@ public class App {
             System.out.println("\n==================== Bibliothèque ====================");
             System.out.println("1. Ajouter un livre");
             System.out.println("2. Afficher tous les livres");
-            System.out.println("3. Rechercher un livre par titre");
-            System.out.println("4. Modifier les informations d'un livre");
-            System.out.println("5. Supprimer un livre");
-            System.out.println("6. Inscrire un membre");
-            System.out.println("7. Afficher tous les membres");
-            System.out.println("8. Rechercher un membre par nom");
-            System.out.println("9. Modifier les informations d'un membre");
-            System.out.println("10. Supprimer un membre");
-            System.out.println("11. Enregistrer un emprunt");
-            System.out.println("12. Afficher tous les emprunts");
-            System.out.println("13. Modifier les informations d'un emprunt");
-            System.out.println("14. Retourner un livre");
-            System.out.println("15. Calcul de la pénalité d'un emprunt");
-            System.out.println("16. Quitter");
+            System.out.println("3. Afficher toutes les catégories de livres disponibles  dans la bibliothque");
+            System.out.println("4. Afficher les livres d'une catégorie donnée dans la bibliothèque");
+            System.out.println("5. Rechercher un livre par titre");
+            System.out.println("6. Modifier les informations d'un livre");
+            System.out.println("7. Supprimer un livre");
+            System.out.println("8. Inscrire un membre");
+            System.out.println("9. Afficher tous les membres");
+            System.out.println("10. Rechercher un membre par nom");
+            System.out.println("11. Modifier les informations d'un membre");
+            System.out.println("12. Supprimer un membre");
+            System.out.println("13. Enregistrer un emprunt");
+            System.out.println("14. Afficher tous les emprunts");
+            System.out.println("15. Modifier les informations d'un emprunt");
+            System.out.println("16. Retourner un livre");
+            System.out.println("17. Calcul de la pénalité d'un emprunt");
+            System.out.println("18. Quitter");
             System.out.print("Choisissez une option : ");
 
             String choix = scanner.nextLine();
@@ -75,13 +74,26 @@ public class App {
                         break;
 
                     case "3":
+                        bibliotheque.afficherToutesCategories();
+                        scanner = new Scanner(System.in);
+                        break;
+
+                    case "4":
+                        System.out.print("Entrez la catégorie des livres à afficher : ");
+                        String categorieRecherchee = scanner.nextLine();
+                        // Appeler la méthode pour afficher les livres de la catégorie donnée
+                        boolean categorieExiste = bibliotheque.afficherLivresParCategorie(categorieRecherchee);
+                        break;
+
+
+                    case "5":
                         System.out.print("Titre : ");
                         String rechercheTitre = scanner.nextLine();
                         Livre livreTrouve = bibliotheque.rechercherLivreParTitre(rechercheTitre);
                         System.out.println(livreTrouve != null ? livreTrouve : "Aucun livre trouvé.");
                         break;
 
-                    case "4":
+                    case "6":
                         System.out.print("ID du livre à modifier : ");
                         int idLivre = scanner.nextInt();
                         scanner.nextLine(); // Consommer la ligne restante
@@ -130,13 +142,13 @@ public class App {
                         break;
 
 
-                    case "5":
+                    case "7":
                         System.out.print("ID du livre : ");
                         idLivre = scanner.nextInt();
                         bibliotheque.supprimerLivre(idLivre);
                         break;
 
-                    case "6":
+                    case "8":
                         System.out.print("Nom : ");
                         String nom = scanner.nextLine();
                         System.out.print("Prénom : ");
@@ -165,18 +177,18 @@ public class App {
                         bibliotheque.inscrireMembre(membre);
                         break;
 
-                    case "7":
+                    case "9":
                         bibliotheque.afficherTousLesMembres();
                         break;
 
-                    case "8":
+                    case "10":
                         System.out.print("Nom : ");
                         String nomRecherche = scanner.nextLine();
                         Membre membreTrouve = bibliotheque.rechercherMembreParNom(nomRecherche);
                         System.out.println(membreTrouve != null ? membreTrouve : "Aucun membre avec ce nom trouvé.");
                         break;
 
-                    case "9":
+                    case "11":
                         System.out.print("ID du membre à modifier : ");
                         int idMembre = scanner.nextInt();
                         scanner.nextLine(); // Consommer la ligne restante
@@ -229,13 +241,13 @@ public class App {
                         }
                         break;
 
-                    case "10":
+                    case "12":
                         System.out.print("ID du membre : ");
                         idMembre = scanner.nextInt();
                         bibliotheque.supprimerMembre(idMembre);
                         break;
 
-                    case "11":
+                    case "13":
                         int membreId = -1;
                         int livreId = -1;
                         String dateRetourPrevue = "";
@@ -295,12 +307,12 @@ public class App {
                         break;
 
 
-                    case "12":
+                    case "14":
                         // Afficher tous les emprunts
                         bibliotheque.afficherTousLesEmprunts();
                         break;
 
-                    case "13":
+                    case "15":
                         int idEmprunt = -1;
                         String nouvelleDateRetourPrevue = null;
                         String nouvelleDateRetourEffective = null;
@@ -358,7 +370,7 @@ public class App {
                         }
                         break;
 
-                    case "14":
+                    case "16":
                         System.out.print("ID de l'emprunt : ");
                         idEmprunt = scanner.nextInt();
                         System.out.print("Date de retour effective (YYYY-MM-DD) : ");
@@ -367,14 +379,14 @@ public class App {
                         bibliotheque.retournerLivre(idEmprunt, dateRetourEffective);
                         break;
 
-                    case "15":
+                    case "17":
                         System.out.print("ID de l'emprunt : ");
                         int empruntId = scanner.nextInt();
                         long penalite = bibliotheque.calculerPenalite(empruntId);
                         System.out.println(penalite > 0 ? "Pénalité : " + penalite + " F CFA" : "Aucune pénalité.");
                        break;
 
-                    case "16":
+                    case "18":
                         System.out.println("Merci d'avoir utilisé la bibliothèque !");
                         scanner.close();
                         return;

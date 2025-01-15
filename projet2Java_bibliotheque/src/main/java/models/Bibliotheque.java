@@ -3,7 +3,9 @@ package models;
 import daos.*;
 
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Classe pour centraliser toutes les fonctionnalités de gestion de la bibliothèque.
@@ -34,6 +36,90 @@ public class Bibliotheque {
             System.out.println(livre);
         }
     }
+
+    /**
+     * Afficher toutes les catégories de livres disponibles dans la bibliothèque.
+     */
+    public void afficherToutesCategories() {
+        try {
+            List<String> categories = livreDAO.getToutesCategories();
+
+            if (categories.isEmpty()) {
+                System.out.println("Aucune catégorie disponible dans la bibliothèque.");
+            } else {
+                System.out.println("Catégories disponibles :");
+                // Afficher chaque catégorie avec un numéro
+                for (int i = 0; i < categories.size(); i++) {
+                    System.out.println((i + 1) + ". " + categories.get(i));
+                }
+                // Demander à l'utilisateur de choisir une catégorie
+                System.out.print("Choisissez un numéro de catégorie pour afficher les livres : ");
+                Scanner scanner = new Scanner(System.in);
+
+                int choixCategorie = -1;
+                boolean validInput = false;
+
+                // Boucle jusqu'à ce que l'entrée soit valide
+                while (!validInput) {
+                    try {
+                        choixCategorie = scanner.nextInt();
+                        // Vérifier si le choix est dans la plage valide
+                        if (choixCategorie > 0 && choixCategorie <= categories.size()) {
+                            validInput = true; // Entrée valide
+                        } else {
+                            System.out.println("Choix invalide. Veuillez sélectionner un numéro entre 1 et " + categories.size());
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrée invalide. Veuillez entrer un numéro entier.");
+                        scanner.nextLine(); // Consommer la ligne incorrecte pour éviter la boucle infinie
+                    }
+                }
+
+                // Si l'entrée est valide, afficher les livres de la catégorie choisie
+                String categorieChoisie = categories.get(choixCategorie - 1);
+                afficherLivresParCategorie(categorieChoisie);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Afficher l'erreur si une exception SQL se produit
+        }
+    }
+
+
+
+
+    /**
+     * Afficher les livres d'une catégorie donnée dans la bibliothèque.
+     * Si la catégorie n'existe pas, un message d'erreur est affiché.
+     *
+     * @param categorie La catégorie des livres à afficher.
+     * @return
+     */
+    public boolean afficherLivresParCategorie(String categorie) {
+        try {
+            System.out.println("Catégorie recherchée : '" + categorie + "'");  // Log pour inspecter la valeur exacte de la catégorie
+            // Vérifier si la catégorie existe dans la base de données
+            if (livreDAO.categorieExiste(categorie)) {
+                List<Livre> livresParCategorie = livreDAO.afficherLivresParCategorie(categorie);
+
+                // Vérifier si des livres ont été trouvés pour cette catégorie
+                if (livresParCategorie.isEmpty()) {
+                    System.out.println("Aucun livre trouvé pour cette catégorie.");
+                } else {
+                    System.out.println("Livres dans la catégorie " + categorie + ":");
+                    // Afficher tous les livres trouvés dans la catégorie
+                    for (Livre livre : livresParCategorie) {
+                        System.out.println(livre); // Assurez-vous que la méthode toString() est définie dans Livre
+                    }
+                }
+            } else {
+                System.out.println("La catégorie '" + categorie + "' n'existe pas dans la base de données.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Afficher l'erreur si une exception SQL se produit
+        }
+        return false;
+    }
+
 
     /**
      * Rechercher un livre par titre.

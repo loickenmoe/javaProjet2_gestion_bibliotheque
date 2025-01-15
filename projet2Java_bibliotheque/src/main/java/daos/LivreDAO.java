@@ -56,6 +56,80 @@ public class LivreDAO {
     }
 
     /**
+     * Récupérer toutes les catégories distinctes des livres dans la base de données.
+     *
+     * @return Une liste de catégories.
+     * @throws SQLException Si une erreur survient lors de l'exécution de la requête SQL.
+     */
+    public List<String> getToutesCategories() throws SQLException {
+        String query = "SELECT DISTINCT categorie FROM livres"; // Récupère toutes les catégories distinctes
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            List<String> categories = new ArrayList<>();
+            while (rs.next()) {
+                categories.add(rs.getString("categorie")); // Ajouter chaque catégorie à la liste
+            }
+            return categories;
+        }
+    }
+
+
+    /**
+     * Vérifier si une catégorie existe dans la base de données.
+     *
+     * @param categorie La catégorie à vérifier.
+     * @return true si la catégorie existe, false sinon.
+     * @throws SQLException Si une erreur survient lors de l'exécution de la requête SQL.
+     */
+    public boolean categorieExiste(String categorie) throws SQLException {
+        String query = "SELECT 1 FROM livres WHERE LOWER(categorie) = LOWER(?) LIMIT 1";// On cherche juste à savoir si la catégorie existe et là rendre insensible à la casse
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, categorie); // Remplacer le paramètre par la catégorie
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next(); // Si la requête retourne une ligne, la catégorie existe
+            }
+        }
+    }
+
+    /**
+     * Récupérer les livres d'une catégorie spécifique depuis la base de données.
+     *
+     * @param categorie La catégorie des livres à récupérer.
+     * @return Une liste de livres appartenant à la catégorie spécifiée.
+     * @throws SQLException Si une erreur survient lors de l'exécution de la requête SQL.
+     */
+    public List<Livre> afficherLivresParCategorie(String categorie) throws SQLException {
+        // Requête SQL pour récupérer les livres de la catégorie spécifiée
+        String query = "SELECT * FROM livres WHERE categorie = ?";
+        List<Livre> livres = new ArrayList<>(); // Liste pour stocker les livres récupérés
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, categorie); // On remplace le paramètre de la requête par la catégorie
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // Créer un objet Livre pour chaque ligne récupérée dans le résultat
+                    Livre livre = new Livre(
+                            rs.getInt("id"),
+                            rs.getString("titre"),
+                            rs.getString("auteur"),
+                            rs.getString("categorie"),
+                            rs.getInt("nombre_exemplaires")
+                    );
+                    livres.add(livre); // Ajouter le livre à la liste
+                }
+            }
+        }
+        return livres; // Retourner la liste des livres de la catégorie
+    }
+
+
+
+    /**
      * Rechercher un livre par son titre dans la base de données.
      *
      * @param titre Le titre du livre à rechercher

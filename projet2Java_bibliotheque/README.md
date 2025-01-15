@@ -1,6 +1,8 @@
 
 Projet 2 - Application Java de Gestion d'une Bibliothèque
 
+    Instructions pour exécuter le projet
+    
 Introduction
 
     Ce projet est une application Java qui permet de gérer une bibliothèque, notamment les livres, les membres et les emprunts. Elle utilise Java, PostgreSQL comme base de données, et Maven pour la gestion des dépendances.
@@ -126,20 +128,22 @@ Une fois l'application démarrée, un menu interactif s'affiche comme suit :
 ==================== Bibliothèque ====================
 1. Ajouter un livre
 2. Afficher tous les livres
-3. Rechercher un livre par titre
-4. Modifier les informations d'un livre
-5. Supprimer un livre
-6. Inscrire un membre
-7. Afficher tous les membres
-8. Rechercher un membre par nom
-9. Modifier les informations d'un membre
-10. Supprimer un membre
-11. Enregistrer un emprunt
-12. Afficher tous les emprunts
-13. Modifier les informations d'un emprunt
-14. Retourner un livre
-15. Calculer les pénalités d'un emprunt
-16. Quitter
+3. Afficher toutes les catégories de livres disponibles dans la bibliothque
+4. Afficher les livres d'une catégorie donnée dans la bibliothèque
+5. Rechercher un livre par titre
+6. Modifier les informations d'un livre
+7. Supprimer un livre
+8. Inscrire un membre
+9. Afficher tous les membres
+10. Rechercher un membre par nom
+11. Modifier les informations d'un membre
+12. Supprimer un membre
+13. Enregistrer un emprunt
+14. Afficher tous les emprunts
+15. Modifier les informations d'un emprunt
+16. Retourner un livre
+17. Calcul de la pénalité d'un emprunt
+18. Quitter
 
 Choisissez une option :
 
